@@ -15,7 +15,7 @@ class Document extends NextDocument {
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces&family=Oswald:wght@300&family=Roboto:wght@300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400&family=Oswald:wght@200&family=Roboto:wght@300&display=swap"
             rel="stylesheet"
           />
         </Head>
