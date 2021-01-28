@@ -6,6 +6,7 @@ import { Navigation } from '~/components';
 const Body = styled.body({
   margin: 0,
   fontFamily: 'Roboto, sans-serif',
+  fontWeight: 300,
 });
 
 class Document extends NextDocument {
@@ -15,7 +16,7 @@ class Document extends NextDocument {
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400&family=Oswald:wght@200&family=Roboto:wght@300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400&family=Oswald:wght@200;300&family=Roboto:wght@300;400&display=swap"
             rel="stylesheet"
           />
         </Head>
