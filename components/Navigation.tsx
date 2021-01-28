@@ -22,15 +22,18 @@ const Root = styled.div({
   }
 });
 
-const Title = styled.a({
+const Title = styled.div({
   flex: 1,
-  color: 'black',
-  textDecoration: 'none',
   fontFamily: 'Oswald, sans-serif',
   fontSize: 32,
   [mq[0]]: {
     marginBottom: 8,
-  }
+  },
+});
+
+const TitleLink = styled.a({
+  color: 'black',
+  textDecoration: 'none',
 });
 
 const NavLink = styled.a({
@@ -53,9 +56,11 @@ const CTA = styled(Button)({
 const Navigation = () => {
   return (
     <Root>
-      <Link href={routes.home} passHref={true}>
-        <Title>CITRA</Title>
-      </Link>
+      <Title>
+        <Link href={routes.home} passHref={true}>
+          <TitleLink>CITRA</TitleLink>
+        </Link>
+      </Title>
       <div>
         {navigationMenu.map(menuItem =>
           <Link href={menuItem.route} passHref={true}>
