@@ -69,11 +69,11 @@ const Hero = () => {
         <Subtitle>
           Try <i>something different</i>.
         </Subtitle>
-        <Link href={routes.menu}>
+        <a href={routes.uberEats}>
           <CTA primary filled>
-            View Our Menu
+            Order on UberEats
           </CTA>
-        </Link>
+        </a>
       </HeroContent>
     </Root>
   );

@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
+import { Button } from '~/components';
 import routes from '~/shared/routes';
 import { mq } from '~/shared/styles';
 
 const navigationMenu = [
   { route: routes.menu, label: 'Menu' },
-  { route: routes.ourSpace, label: 'Our Space' },
   { route: routes.blog, label: 'Blog' },
 ];
 
@@ -42,6 +42,14 @@ const NavLink = styled.a({
   }
 });
 
+const CTA = styled(Button)({
+  marginLeft: 12,
+  borderWidth: 1,
+  fontSize: 16,
+  fontWeight: 200,
+  fontFamily: 'Roboto, sans-serif',
+});
+
 const Navigation = () => {
   return (
     <Root>
@@ -54,6 +62,9 @@ const Navigation = () => {
             <NavLink>{menuItem.label}</NavLink>
           </Link>
         )}
+        <a href={routes.uberEats}>
+          <CTA>Order Online</CTA>
+        </a>
       </div>
     </Root>
   );

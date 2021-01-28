@@ -14,6 +14,9 @@ const Root = styled.button(({ filled, primary }: any) => ({
   color: filled
     ? Colors.NEUTRALS.WHITE
     : (primary ? Colors.BRAND.DARK : Colors.NEUTRALS.BLACK),
+  ':hover': {
+    cursor: 'pointer',
+  },
 }));
 
 interface Props {
