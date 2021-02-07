@@ -1,16 +1,16 @@
-import { ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReactChild } from 'react';
 
 import { Colors } from '~/shared/styles';
 
 const Root = styled.button(({ filled, primary }: any) => ({
+  borderWidth: 1,
   borderStyle: 'solid',
   borderColor: primary ? Colors.BRAND.DARK : Colors.NEUTRALS.BLACK,
   padding: 10,
   backgroundColor: filled
     ? (primary ? Colors.BRAND.DARK : Colors.NEUTRALS.BLACK)
-    : Colors.NEUTRALS.WHITE,
+    : 'transparent',
   color: filled
     ? Colors.NEUTRALS.WHITE
     : (primary ? Colors.BRAND.DARK : Colors.NEUTRALS.BLACK),
