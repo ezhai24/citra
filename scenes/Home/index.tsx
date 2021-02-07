@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import About from './About';
 import Hero from './Hero';
 import LocationAndHours from './LocationAndHours';
 
@@ -11,6 +12,7 @@ export default function Home() {
       </Head>
       <Hero />
       <LocationAndHours />
+      <About />
     </div>
   )
 }
