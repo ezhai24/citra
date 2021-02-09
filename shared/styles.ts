@@ -9,6 +9,7 @@ export const Colors = {
     LIGHT: '#FEADDC',
   },
   NEUTRALS: {
+    DARKGRAY: '#90908E',
     GRAY: '#E4E4E4',
     BLACK: '#191919',
     WHITE: '#FFFFFF',

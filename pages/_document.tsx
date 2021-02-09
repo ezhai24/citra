@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
-import { Navigation } from '~/components';
+import { Navigation, Footer } from '~/components';
 
 const Body = styled.body({
   margin: 0,
@@ -23,6 +23,7 @@ class Document extends NextDocument {
         <Body>
           <Navigation />
           <Main />
+          <Footer />
           <NextScript />
         </Body>
       </Html>
