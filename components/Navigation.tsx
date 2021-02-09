@@ -40,9 +40,6 @@ const NavLink = styled.a({
   margin: '0 12px',
   color: 'black',
   textDecoration: 'none',
-  ':hover': {
-    cursor: 'pointer',
-  }
 });
 
 const CTA = styled(Button)({

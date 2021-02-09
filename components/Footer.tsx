@@ -21,9 +21,6 @@ const Address = styled.a({
   marginBottom: 16,
   color: Colors.NEUTRALS.BLACK,
   fontStyle: 'italic',
-  ':hover': {
-    cursor: 'pointer',
-  },
   '>p': {
     margin: 0,
   },
@@ -33,9 +30,6 @@ const Phone = styled.a({
   marginBottom: 64,
   color: Colors.NEUTRALS.BLACK,
   fontStyle: 'italic',
-  ':hover': {
-    cursor: 'pointer',
-  },
 });
 
 const Icons = styled.div({

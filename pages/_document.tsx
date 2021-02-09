@@ -7,6 +7,9 @@ const Body = styled.body({
   margin: 0,
   fontFamily: 'Roboto, sans-serif',
   fontWeight: 300,
+  '&a:hover': {
+    cursor: 'pointer',
+  }
 });
 
 class Document extends NextDocument {
