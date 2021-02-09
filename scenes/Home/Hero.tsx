@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 
 import { Button } from '~/components';
-import images from '~/shared/images';
+import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
 
