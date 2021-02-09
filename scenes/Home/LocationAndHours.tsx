@@ -34,7 +34,8 @@ const SectionTitle = styled.h3({
 });
 
 const CovidUpdate = styled.div({
-  marginTop: 64,
+  width: '90%',
+  margin: '64px auto 0',
   textAlign: 'center',
   fontFamily: 'Fraunces, serif',
 });

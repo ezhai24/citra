@@ -49,7 +49,8 @@ const Copyright = styled.div({
 });
 
 const IconCredit = styled.div({
-  marginTop: 8,
+  width: '90%',
+  margin: '8px auto 0',
   color: Colors.NEUTRALS.DARKGRAY,
 });
 

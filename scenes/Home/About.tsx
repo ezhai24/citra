@@ -57,9 +57,9 @@ const About = () => (
           coffee beans, scratch-made sweet treats to hand-prepared bagels,
         </Excerpt>
         <Description>
-          Citra believes in the power of quality and community. Everything we make, 
-          we make with care because we know how important it is to do right by the 
-          people who support us. And whether its you're first time visiting or you're 
+          Citra believes in the power of quality and community. Everything we make  
+          is made with care because we know how important it is to do right by the 
+          people who support us. And whether its your first time visiting or your  
           hundredth, we'd love to see you in!
         </Description>
         <Link href={routes.menu}>
