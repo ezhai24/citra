@@ -394,7 +394,7 @@ const drinksMenu: MenuType = {
       category: 'Other',
       items: [
         {
-          name: 'Lemonade Ice Tea',
+          name: 'Lemonade Iced Tea',
           modifiers: [
             { name: '12oz', price: 4.50 },
             { name: '16oz', price: 5 },
