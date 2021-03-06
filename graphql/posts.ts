@@ -1,10 +1,19 @@
 import { gql } from 'apollo-server-micro';
 import fs from 'fs';
 
+import { paginateResults } from './utils';
+
 const typeDefs = gql`
   type Query {
-    posts: [Post!]!
+    posts(pageSize: Int, after: String): PaginatedPosts!
     postById(slug: String!): Post!
+  }
+  type PaginatedPosts {
+    edges: [PostEdge!]!
+  }
+  type PostEdge {
+    node: Post!
+    cursor: String!
   }
   type Post {
     title: String!
@@ -17,19 +26,31 @@ blogPostSlugs.sort((a, b) =>
   fs.statSync(`${blogDir}/${b}`).mtime.getTime() - fs.statSync(`${blogDir}/${a}`).mtime.getTime(),
 );
 
+const getCursor = (postSlug: string) => Buffer.from(postSlug).toString('base64');
+
 const resolvers = {
   Query: {
-    async posts() {
-      const posts = [];
-      for (const slug of blogPostSlugs) {
+    async posts(_parent, { pageSize = 20, after }) {
+      const slugs = paginateResults({
+        results: blogPostSlugs,
+        pageSize,
+        cursor: after,
+        getCursor,
+      });
+
+      const postEdges = [];
+      for (const slug of slugs) {
         try {
           const post = await import(`blog/${slug}`);
-          posts.push(post);
+          postEdges.push({
+            node: post.default,
+            cursor: getCursor(slug),
+          });
         } catch {
           console.log(`Could not find post blog/${slug}`);
         }
       }
-      return posts;
+      return { edges: postEdges };
     },
 
     async postById(_parent, { slug }) {
