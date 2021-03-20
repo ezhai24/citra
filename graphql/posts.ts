@@ -10,6 +10,7 @@ const typeDefs = gql`
   }
   type PaginatedPosts {
     edges: [PostEdge!]!
+    pageInfo: PostPageInfo!
   }
   type PostEdge {
     node: Post!
@@ -17,6 +18,13 @@ const typeDefs = gql`
   }
   type Post {
     title: String!
+  }
+  type PostPageInfo {
+    hasNextPage: Boolean!
+    nextPage: String
+    hasPrevPage: Boolean!
+    prevPage: String
+    totalCount: Int!
   }
 `;
 
@@ -31,7 +39,7 @@ const getCursor = (postSlug: string) => Buffer.from(postSlug).toString('base64')
 const resolvers = {
   Query: {
     async posts(_parent, { pageSize = 20, after }) {
-      const slugs = paginateResults({
+      const { edges: slugs, pageInfo } = paginateResults({
         results: blogPostSlugs,
         pageSize,
         cursor: after,
@@ -50,7 +58,10 @@ const resolvers = {
           console.log(`Could not find post blog/${slug}`);
         }
       }
-      return { edges: postEdges };
+      return { 
+        edges: postEdges,
+        pageInfo,
+      };
     },
 
     async postById(_parent, { slug }) {
