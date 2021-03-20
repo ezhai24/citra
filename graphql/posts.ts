@@ -1,5 +1,7 @@
 import { gql } from 'apollo-server-micro';
 import fs from 'fs';
+import matter from 'gray-matter';
+import marked from 'marked';
 
 import { paginateResults } from './utils';
 
@@ -18,6 +20,7 @@ const typeDefs = gql`
   }
   type Post {
     title: String!
+    content: String!
   }
   type PostPageInfo {
     hasNextPage: Boolean!
@@ -49,9 +52,14 @@ const resolvers = {
       const postEdges = [];
       for (const slug of slugs) {
         try {
-          const post = await import(`blog/${slug}`);
+          const fileContent = await import(`blog/${slug}`);
+          const meta = matter(fileContent.default);
+          const content = marked(meta.content);
           postEdges.push({
-            node: post.default,
+            node: {
+              title: meta.data.title,
+              content,
+            },
             cursor: getCursor(slug),
           });
         } catch {
@@ -66,8 +74,13 @@ const resolvers = {
 
     async postById(_parent, { slug }) {
       try {
-        const post = await import(`blog/${slug}`);
-        return post.default;
+        const fileContent = await import(`blog/${slug}.md`);
+        const meta = matter(fileContent.default);
+        const content = marked(meta.content);
+        return {
+          title: meta.data.title,
+          content,
+        };
       } catch {
         return null;
       }
