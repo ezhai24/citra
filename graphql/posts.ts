@@ -19,7 +19,11 @@ const typeDefs = gql`
     cursor: String!
   }
   type Post {
+    slug: String!
     title: String!
+    image: String!
+    description: String!
+    createdAt: String!
     content: String!
   }
   type PostPageInfo {
@@ -34,7 +38,7 @@ const typeDefs = gql`
 const blogDir = 'blog';
 const blogPostSlugs = fs.readdirSync(blogDir);
 blogPostSlugs.sort((a, b) =>
-  fs.statSync(`${blogDir}/${b}`).mtime.getTime() - fs.statSync(`${blogDir}/${a}`).mtime.getTime(),
+  fs.statSync(`${blogDir}/${b}`).birthtimeMs - fs.statSync(`${blogDir}/${a}`).birthtimeMs,
 );
 
 const getCursor = (postSlug: string) => Buffer.from(postSlug).toString('base64');
@@ -57,7 +61,12 @@ const resolvers = {
           const content = marked(meta.content);
           postEdges.push({
             node: {
+              // Remove file extension
+              slug: slug.split('.')[0],
               title: meta.data.title,
+              image: meta.data.image,
+              description: meta.data.description,
+              createdAt: fs.statSync(`${blogDir}/${slug}`).birthtime.toISOString(),
               content,
             },
             cursor: getCursor(slug),
@@ -78,7 +87,11 @@ const resolvers = {
         const meta = matter(fileContent.default);
         const content = marked(meta.content);
         return {
+          slug,
           title: meta.data.title,
+          image: meta.data.image,
+          description: meta.data.description,
+          createdAt: fs.statSync(`${blogDir}/${slug}.md`).birthtime.toISOString(),
           content,
         };
       } catch {
