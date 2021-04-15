@@ -5,6 +5,7 @@ export const getPosts = gql`
     posts {
       edges {
         node {
+          slug
           title
           image
           description
@@ -12,6 +13,18 @@ export const getPosts = gql`
         }
         cursor
       }
+    }
+  }
+`;
+
+export const getPost = gql`
+  query getPost($slug: String!) {
+    postById(slug: $slug) {
+      title
+      image
+      description
+      createdAt
+      content
     }
   }
 `;

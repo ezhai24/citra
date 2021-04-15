@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import moment from 'moment-timezone';
+import Link from 'next/link';
 
+import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
 import { isNil } from '~/shared/utils';
 
@@ -19,6 +21,9 @@ const Card = styled.div({
   flexDirection: 'row',
   marginBottom: 32,
   border: `1px solid ${Colors.NEUTRALS.DARKGRAY}`,
+  ':hover': {
+    cursor: 'pointer',
+  },
   [mq[0]]: {
     flexDirection: 'column',
   },
@@ -74,16 +79,18 @@ const Blog = ({ posts }: Props) => {
       <Breadcrumb>Blog</Breadcrumb>
       {posts.map(post => {
         const id = post.cursor;
-        const { title, image, description, createdAt } = post.node;
+        const { slug, title, image, description, createdAt } = post.node;
         return (
-          <Card key={id}>
-            <Image src={image} />
-            <Content style={{ flex: 1 }}>
-              <Title>{title}</Title>
-              <Description>{description}</Description>
-              <Date>{moment(createdAt).format('MMM D, YYYY')}</Date>
-            </Content>
-          </Card>
+          <Link key={id} href={routes.blogArticle(slug)}>
+            <Card>
+              <Image src={image} />
+              <Content style={{ flex: 1 }}>
+                <Title>{title}</Title>
+                <Description>{description}</Description>
+                <Date>{moment(createdAt).format('MMM D, YYYY')}</Date>
+              </Content>
+            </Card>
+          </Link>
         );
       })}
     </Root>

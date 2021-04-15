@@ -4,6 +4,7 @@ export default {
   menu: '/menu',
   ourSpace: '/our-space',
   blog: '/blog',
+  blogArticle: (slug: string) => `/blog/${slug}`,
 
   // External routes
   directions: 'https://goo.gl/maps/RgzNMURCGo2bmk7y8',
