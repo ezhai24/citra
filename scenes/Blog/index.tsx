@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import moment from 'moment-timezone';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import routes from '~/shared/routes';
@@ -76,6 +77,9 @@ const Blog = ({ posts }: Props) => {
 
   return (
     <Root>
+      <Head>
+        <title>Blog - Citra | Bubble Tea Cafe - Seattle, Washington</title>
+      </Head>
       <Breadcrumb>Blog</Breadcrumb>
       {posts.map(post => {
         const id = post.cursor;

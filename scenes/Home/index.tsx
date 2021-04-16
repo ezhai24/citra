@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Citra - Bubble Tea Cafe - Seattle, Washington</title>
+        <title>Citra | Bubble Tea Cafe - Seattle, Washington</title>
       </Head>
       <Hero />
       <LocationAndHours />

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import moment from 'moment-timezone';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import routes from '~/shared/routes';
@@ -54,6 +55,9 @@ interface Props {
 const Article = ({ image, title, createdAt, content }: Props) => {
   return (
     <Root>
+      <Head>
+        <title>{title} - Citra</title>
+      </Head>
       <Breadcrumb>
         <Link href={routes.blog}>Blog</Link> &gt; {title}
       </Breadcrumb>

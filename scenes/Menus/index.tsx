@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Head from 'next/head';
 
 import { mq } from '~/shared/styles';
 
@@ -22,6 +23,9 @@ const Title = styled.h1({
 
 const Menus = () => (
   <Root>
+    <Head>
+      <title>Menu - Citra | Bubble Tea Cafe - Seattle, Washington</title>
+    </Head>
     <Title>MENU</Title>
     {menus.map(menu => <Menu {...menu} />)}
   </Root>
