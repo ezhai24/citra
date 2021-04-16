@@ -46,18 +46,26 @@ const Byline = styled.p({
 
 // TODO: Type using graphql-codegen
 interface Props {
+  slug: string;
   image: string;
   title: string;
+  description: string;
   createdAt: string;
   content: string;
 }
 
-const Article = ({ image, title, createdAt, content }: Props) => {
+const Article = ({ slug, image, title, description, createdAt, content }: Props) => {
   return (
     <Root>
       <Head>
         <title>{title} - Citra</title>
+        <meta property="og:title" content={`${title} - Citra`} />
+        <meta property="og:url" content={process.env.HOST + routes.blogArticle(slug)} />
+        <meta property="og:image" content={process.env.HOST + image} />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={description} />
       </Head>
+
       <Breadcrumb>
         <Link href={routes.blog}>Blog</Link> &gt; {title}
       </Breadcrumb>

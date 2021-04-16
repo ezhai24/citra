@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
 import { isNil } from '~/shared/utils';
@@ -79,7 +80,13 @@ const Blog = ({ posts }: Props) => {
     <Root>
       <Head>
         <title>Blog - Citra | Bubble Tea Cafe - Seattle, Washington</title>
+        <meta property="og:title" content="Blog - Citra | Bubble Tea Cafe - Seattle, Washington" />
+        <meta property="og:url" content={process.env.HOST + routes.blog} />
+        <meta property="og:image" content={process.env.HOST + images.SNOW_ICE} />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Featured flavors, bubble tea how-tos, and the latest at Citra." />
       </Head>
+
       <Breadcrumb>Blog</Breadcrumb>
       {posts.map(post => {
         const id = post.cursor;

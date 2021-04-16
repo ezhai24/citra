@@ -20,6 +20,7 @@ export const getPosts = gql`
 export const getPost = gql`
   query getPost($slug: String!) {
     postById(slug: $slug) {
+      slug
       title
       image
       description
