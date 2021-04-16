@@ -4,4 +4,7 @@ module.exports = {
     config.module.rules.push({test:  /\.md$/, use: 'raw-loader'});
     return config;
   },
+  env: {
+    HOST: process.env.HOST,
+  },
 };
