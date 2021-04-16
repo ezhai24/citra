@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
-import { isNil } from '~/shared/utils';
 
-const Root = styled.div({
+const Root = styled.div(({ center }: { center?: boolean }) => ({
   width: '90%',
   maxWidth: 1028,
   margin: '0px auto',
-});
+  textAlign: center ? 'center' : 'left',
+}));
 
 const Breadcrumb = styled.div({
   margin: '32px 0px',
@@ -72,8 +72,8 @@ interface Props {
 }
 
 const Blog = ({ posts }: Props) => {
-  if (isNil(posts)) {
-    return <div>No blog posts found!</div>;
+  if (posts.length === 0) {
+    return <Root center>No posts yet - check back later!</Root>;
   }
 
   return (
