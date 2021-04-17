@@ -1,18 +1,12 @@
-import client from '~/graphql/client';
-import { getPost } from '~/graphql/queries';
+import postsResolver from '~/graphql/posts';
 import ArticleComponent from '~/scenes/Blog/Article';
 
 const Article = (props) => <ArticleComponent {...props} />;
 export default Article;
 
 export const getStaticProps = async (context) => {
-  const { data } = await client.query({
-    query: getPost,
-    variables: {
-      slug: context.params.slug,
-    },
-  });
-  return { props: { ...data.postById } };
+  const data = await postsResolver.resolvers.Query.postById({}, { slug: context.params.slug });
+  return { props: { ...data } };
 }
 
 export const getStaticPaths = async () => {
