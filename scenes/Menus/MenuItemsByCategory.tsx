@@ -29,11 +29,11 @@ const MenuItemsByCategory = ({ category, items, additions }: MenuItemsByCategory
   <Root>
     <Title>{category}</Title>
     <Items>
-      {items.map(item => <MenuItem {...item} />)}
+      {items.map(item => <MenuItem key={item.name} {...item} />)}
     </Items>
     {additions &&
       <Additions>
-        {additions.map(addition => <AdditionItem {...addition} />)}
+        {additions.map(addition => <AdditionItem key={addition.name} {...addition} />)}
       </Additions>
     }
   </Root>

@@ -16,7 +16,7 @@ const Menu = ({ title, menuItemsByCategory }: MenuType) => (
   <Root>
     <Title>{title}</Title>
     {menuItemsByCategory.map(itemsByCategory =>
-      <MenuItemsByCategory {...itemsByCategory} />
+      <MenuItemsByCategory key={itemsByCategory.category} {...itemsByCategory} />
     )}
   </Root>
 );

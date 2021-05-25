@@ -60,7 +60,7 @@ const Navigation = () => {
       </Title>
       <div>
         {navigationMenu.map(menuItem =>
-          <Link href={menuItem.route} passHref={true}>
+          <Link key={menuItem.route} href={menuItem.route} passHref={true}>
             <NavLink>{menuItem.label}</NavLink>
           </Link>
         )}

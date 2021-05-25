@@ -45,7 +45,7 @@ const AdditionItem = ({
     {flavors && <p>{flavors}</p>}
     {modifiers &&
       <Modifiers modifierOrientation={modifierOrientation}>
-        {modifiers.map(modifier => <Modifier {...modifier} />)}
+        {modifiers.map(modifier => <Modifier key={modifier.name} {...modifier} />)}
       </Modifiers>
     }
     <p>{price && `$${price.toFixed(2)}`}</p>

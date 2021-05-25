@@ -35,7 +35,7 @@ const Menus = () => (
     </Head>
 
     <Title>MENU</Title>
-    {menus.map(menu => <Menu {...menu} />)}
+    {menus.map(menu => <Menu key={menu.title} {...menu} />)}
   </Root>
 );
 
