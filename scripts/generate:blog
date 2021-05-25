@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+cat > ./blog/$1.md << ENDOFFILE
+---
+title: "Article Title"
+image: "/assets/article-hero-image.jpg"
+description: "Short description to show in article preview"
+---
+Main article content. This is a standard Markdown file so standard Markdown
+notation can be used to format text, add images, etc.
+ENDOFFILE
