@@ -1,0 +1,7 @@
+overwrite: true
+schema: "./graphql/posts.ts"
+generates:
+  ./graphql/types.d.ts:
+    plugins: 
+      - typescript
+      - typescript-resolvers

@@ -5,7 +5,7 @@ import marked from 'marked';
 
 import { paginateResults } from './utils';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Query {
     posts(pageSize: Int, after: String): PaginatedPosts!
     postById(slug: String!): Post!

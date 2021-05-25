@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { Post } from '~/graphql/types';
 import routes from '~/shared/routes';
 import { Colors } from '~/shared/styles';
 
@@ -44,17 +45,7 @@ const Byline = styled.p({
   fontStyle: 'italic',
 });
 
-// TODO: Type using graphql-codegen
-interface Props {
-  slug: string;
-  image: string;
-  title: string;
-  description: string;
-  createdAt: string;
-  content: string;
-}
-
-const Article = ({ slug, image, title, description, createdAt, content }: Props) => {
+const Article = ({ slug, image, title, description, createdAt, content }: Post) => {
   return (
     <Root>
       <Head>

@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { PostEdge } from '~/graphql/types';
 import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
@@ -66,9 +67,8 @@ const Date = styled.p({
   fontStyle: 'italic',
 });
 
-// TODO: Type using graphql-codegen
 interface Props {
-  posts: any[];
+  posts: PostEdge[];
 }
 
 const Blog = ({ posts }: Props) => {
