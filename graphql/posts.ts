@@ -39,8 +39,8 @@ export const typeDefs = gql`
 const blogDir = path.join(process.cwd(), 'blog');
 const blogPostSlugs = fs.readdirSync(blogDir);
 blogPostSlugs.sort((a, b) => {
-  const filePathA = path.join(blogDir, `${a}.md`);
-  const filePathB = path.join(blogDir, `${b}.md`);
+  const filePathA = path.join(blogDir, a);
+  const filePathB = path.join(blogDir, b);
   return fs.statSync(filePathA).birthtimeMs - fs.statSync(filePathB).birthtimeMs;
 });
 
@@ -58,7 +58,7 @@ const resolvers = {
 
       const postEdges = [];
       for (const slug of slugs) {
-        const filePath = path.join(blogDir, `${slug}.md`);
+        const filePath = path.join(blogDir, slug);
 
         try {
           const fileContent = fs.readFileSync(filePath);
