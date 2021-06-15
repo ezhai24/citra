@@ -1,2 +1,4 @@
-import Home from '~/scenes/Home';
-export default () => <Home />;
+import HomeComponent from '~/scenes/Home';
+
+const Home = () => <HomeComponent />;
+export default Home;
