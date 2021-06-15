@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-micro';
 import fs from 'fs';
 import matter from 'gray-matter';
 import marked from 'marked';
+import path from 'path';
 
 import { paginateResults } from './utils';
 
@@ -35,11 +36,13 @@ export const typeDefs = gql`
   }
 `;
 
-const blogDir = 'blog';
+const blogDir = path.join(process.cwd(), 'blog');
 const blogPostSlugs = fs.readdirSync(blogDir);
-blogPostSlugs.sort((a, b) =>
-  fs.statSync(`${blogDir}/${b}`).birthtimeMs - fs.statSync(`${blogDir}/${a}`).birthtimeMs,
-);
+blogPostSlugs.sort((a, b) => {
+  const filePathA = path.join(blogDir, `${a}.md`);
+  const filePathB = path.join(blogDir, `${b}.md`);
+  return fs.statSync(filePathA).birthtimeMs - fs.statSync(filePathB).birthtimeMs;
+});
 
 const getCursor = (postSlug: string) => Buffer.from(postSlug).toString('base64');
 
@@ -55,9 +58,11 @@ const resolvers = {
 
       const postEdges = [];
       for (const slug of slugs) {
+        const filePath = path.join(blogDir, `${slug}.md`);
+
         try {
-          const fileContent = await import(`blog/${slug}`);
-          const meta = matter(fileContent.default);
+          const fileContent = fs.readFileSync(filePath);
+          const meta = matter(fileContent);
           const content = marked(meta.content);
           postEdges.push({
             node: {
@@ -66,16 +71,16 @@ const resolvers = {
               title: meta.data.title,
               image: meta.data.image,
               description: meta.data.description,
-              createdAt: fs.statSync(`${blogDir}/${slug}`).birthtime.toISOString(),
+              createdAt: fs.statSync(filePath).birthtime.toISOString(),
               content,
             },
             cursor: getCursor(slug),
           });
         } catch {
-          console.log(`Could not find post blog/${slug}`);
+          console.log(`Could not find post ${filePath}`);
         }
       }
-      return { 
+      return {
         edges: postEdges,
         pageInfo,
       };
@@ -83,15 +88,16 @@ const resolvers = {
 
     async postById(_parent, { slug }) {
       try {
-        const fileContent = await import(`blog/${slug}.md`);
-        const meta = matter(fileContent.default);
+        const filePath = path.join(blogDir, `${slug}.md`);
+        const fileContent = fs.readFileSync(filePath);
+        const meta = matter(fileContent);
         const content = marked(meta.content);
         return {
           slug,
           title: meta.data.title,
           image: meta.data.image,
           description: meta.data.description,
-          createdAt: fs.statSync(`${blogDir}/${slug}.md`).birthtime.toISOString(),
+          createdAt: fs.statSync(filePath).birthtime.toISOString(),
           content,
         };
       } catch {
