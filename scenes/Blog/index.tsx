@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import Button from '~/components/Button';
 import { getPosts } from '~/graphql/queries';
-import { PostEdge, PostPageInfo } from '~/graphql/types';
+import { GetPostsQuery } from '~/graphql/types';
 import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
@@ -76,15 +76,15 @@ const MorePostsButton = styled(Button)({
 });
 
 interface Props {
-  posts: PostEdge[];
-  pageInfo: PostPageInfo;
+  posts: GetPostsQuery['posts']['edges'];
+  pageInfo: GetPostsQuery['posts']['pageInfo'];
 }
 
 const Blog = (props: Props) => {
   const [posts, setPosts] = useState(props.posts);
   const [pageInfo, setPageInfo] = useState(props.pageInfo);
 
-  const [loadMorePosts] = useLazyQuery(getPosts, {
+  const [loadMorePosts] = useLazyQuery<GetPostsQuery>(getPosts, {
     variables: { pageSize: 20, after: props.pageInfo.nextPage },
     onCompleted: (data) => {
       setPosts([...posts, ...data.posts.edges]);
