@@ -6,8 +6,8 @@ export default Blog;
 
 export const getStaticProps = async () => {
   try {
-    const data = await postsResolver.resolvers.Query.posts({}, { after: null });
-    return { props: { posts: data.edges } };
+    const data = await postsResolver.resolvers.Query.posts({}, { pageSize: 20, after: null });
+    return { props: { posts: data.edges, pageInfo: data.pageInfo } };
   } catch {
     return { props: { posts: null }};
   }

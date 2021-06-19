@@ -1,9 +1,13 @@
+import { useLazyQuery } from '@apollo/client';
 import styled from '@emotion/styled';
 import moment from 'moment-timezone';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 
-import { PostEdge } from '~/graphql/types';
+import Button from '~/components/Button';
+import { getPosts } from '~/graphql/queries';
+import { PostEdge, PostPageInfo } from '~/graphql/types';
 import { images } from '~/shared/assets';
 import routes from '~/shared/routes';
 import { mq, Colors } from '~/shared/styles';
@@ -67,11 +71,27 @@ const Date = styled.p({
   fontStyle: 'italic',
 });
 
+const MorePostsButton = styled(Button)({
+  width: '100%',
+});
+
 interface Props {
   posts: PostEdge[];
+  pageInfo: PostPageInfo;
 }
 
-const Blog = ({ posts }: Props) => {
+const Blog = (props: Props) => {
+  const [posts, setPosts] = useState(props.posts);
+  const [pageInfo, setPageInfo] = useState(props.pageInfo);
+
+  const [loadMorePosts] = useLazyQuery(getPosts, {
+    variables: { pageSize: 20, after: props.pageInfo.nextPage },
+    onCompleted: (data) => {
+      setPosts([...posts, ...data.posts.edges]);
+      setPageInfo(data.posts.pageInfo);
+    }
+  });
+
   if (posts.length === 0) {
     return <Root center>No posts yet - check back later!</Root>;
   }
@@ -104,6 +124,10 @@ const Blog = ({ posts }: Props) => {
           </Link>
         );
       })}
+
+      {pageInfo.hasNextPage &&
+        <MorePostsButton onClick={loadMorePosts}>MORE POSTS</MorePostsButton>
+      }
     </Root>
   );
 }

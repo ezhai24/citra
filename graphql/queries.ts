@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const getPosts = gql`
-  query getPosts {
-    posts {
+  query getPosts($pageSize: Int, $after: String) {
+    posts(pageSize: $pageSize, after: $after) {
       edges {
         node {
           slug
@@ -13,19 +13,10 @@ export const getPosts = gql`
         }
         cursor
       }
-    }
-  }
-`;
-
-export const getPost = gql`
-  query getPost($slug: String!) {
-    postById(slug: $slug) {
-      slug
-      title
-      image
-      description
-      createdAt
-      content
+      pageInfo {
+        hasNextPage
+        nextPage
+      }
     }
   }
 `;
