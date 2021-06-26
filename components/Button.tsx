@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ReactChild } from 'react';
+import React, { ReactChild } from 'react';
 
 import { Colors } from '~/shared/styles';
 
@@ -27,9 +27,10 @@ interface Props {
   className?: string;
 }
 
-const Button = ({ primary, filled, onClick, className, children }: Props) => {
+const Button = React.forwardRef(({ primary, filled, onClick, className, children }: Props, ref) => {
   return (
     <Root
+      ref={ref}
       primary={primary}
       filled={filled}
       onClick={onClick}
@@ -38,6 +39,6 @@ const Button = ({ primary, filled, onClick, className, children }: Props) => {
       {children}
     </Root>
   );
-};
+});
 
 export default Button;

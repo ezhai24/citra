@@ -1,2 +1,4 @@
-import Menus from '~/scenes/Menus';
-export default () => <Menus />;
+import MenuComponent from '~/scenes/Menus';
+
+const Menu = () => <MenuComponent />;
+export default Menu;
