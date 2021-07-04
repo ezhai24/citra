@@ -113,7 +113,7 @@ const Blog = (props: Props) => {
         const { slug, title, image, description, createdAt } = post.node;
         return (
           <Link key={id} href={routes.blogArticle(slug)}>
-            <Card>
+            <Card id={slug}>
               <Image src={image} />
               <Content style={{ flex: 1 }}>
                 <Title>{title}</Title>
