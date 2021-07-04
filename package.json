@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn generate:graphql && next build",
+    "build": "yarn generate:types && next build",
     "start": "next start",
     "test": "jest",
     "generate:blog": "./scripts/generate:blog",
