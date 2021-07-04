@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Citra
+![citra-home](./docs/home-page.png)
+### by Emily Zhai | [LinkedIn](https://www.linkedin.com/in/emily-zhai-b7b32a103/)
+Created to support a local, Seattle business in the midst of a global pandemic. Stop in for some of their bubble tea if you're in town! ([Map It!](https://www.google.com/maps/dir//cafe+citra/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x54901461ded12a83:0xbe0a4ea6472907e?sa=X&ved=2ahUKEwjvp7KbpsjxAhVYrp4KHfO8CgkQ9RcwFHoECEUQBQ))
 
-## Getting Started
+## Local Development
+### `now env pull`
+Pulls all development environment variables from Vercel.
 
-First, run the development server:
+### `yarn`
+Installs dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### `yarn dev`
+This runs the app in a local development mode.  
+The page will hot reload any updates to the front-end and API.  
+Open http://localhost:3000 to view it in the browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### `yarn build && yarn start`
+This will create an optimized production build to run locally.  
+Open http://localhost:3000 to view it in the browser.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployments
+Production deployments are triggered automatically when code is merged to master.
